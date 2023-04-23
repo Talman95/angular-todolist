@@ -1,3 +1,22 @@
 <div>
-  <todo-todo *ngFor="let todo of todos$ | async" [todo]="todo"></todo-todo>
+  <header class="header">
+    <h1>Angular Todo</h1>
+  </header>
+
+  <div class="addForm">
+    <input
+      class="input"
+      type="text"
+      placeholder="Add new todo..."
+      [(ngModel)]="title"
+    />
+    <button (click)="addTodo()">+</button>
+  </div>
+
+  <todo-todo
+    *ngFor="let todo of todos$ | async"
+    [todo]="todo"
+    (removeEvent)="removeTodo($event)"
+    (updateEvent)="updateTodo($event)"
+  ></todo-todo>
 </div>
