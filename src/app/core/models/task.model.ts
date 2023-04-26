@@ -17,3 +17,7 @@ export interface Task {
   order: number
   addedDate: Date
 }
+
+export interface TasksState {
+  [id: string]: Task[]
+}
