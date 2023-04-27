@@ -4,5 +4,9 @@
     <button (click)="addTask()">+</button>
   </div>
 
-  <todo-task *ngFor="let task of tasks$ | async" [task]="task"></todo-task>
+  <todo-task
+    *ngFor="let task of tasks$ | async"
+    [task]="task"
+    (removeTaskEvent)="removeTask($event)"
+  ></todo-task>
 </div>
