@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { map, Observable } from 'rxjs'
 import { TasksService } from 'src/app/todos/tasks.service'
 import { Task } from 'src/app/core'
+import { TaskStatus } from 'src/app/core/enums/task-status.enum'
 
 @Component({
   selector: 'todo-tasks',
@@ -30,5 +31,15 @@ export class TasksComponent implements OnInit {
 
   removeTask(data: { todoId: string; taskId: string }) {
     this.tasksService.removeTask(data.todoId, data.taskId)
+  }
+
+  updateTaskStatus(data: {
+    todoId: string
+    taskId: string
+    status: TaskStatus
+  }) {
+    this.tasksService.updateTask(data.todoId, data.taskId, {
+      status: data.status,
+    })
   }
 }

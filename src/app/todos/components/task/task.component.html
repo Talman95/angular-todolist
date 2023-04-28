@@ -1,5 +1,9 @@
 <article class="task">
-  <input type="checkbox" />
+  <input
+    type="checkbox"
+    (change)="updateTaskStatus($event)"
+    [checked]="task.status === taskStatus.Completed"
+  />
   <b>{{ task.title }}</b>
   <button (click)="removeTask()">X</button>
 </article>

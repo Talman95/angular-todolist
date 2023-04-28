@@ -8,5 +8,6 @@
     *ngFor="let task of tasks$ | async"
     [task]="task"
     (removeTaskEvent)="removeTask($event)"
+    (updateTaskStatusEvent)="updateTaskStatus($event)"
   ></todo-task>
 </div>
