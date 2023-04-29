@@ -21,7 +21,30 @@ export class TaskComponent {
     status: TaskStatus
   }>()
 
+  @Output() updateTaskTitleEvent = new EventEmitter<{
+    todoId: string
+    taskId: string
+    title: string
+  }>()
+
+  isEditMode = false
+  newTitle = ''
   taskStatus: typeof TaskStatus = TaskStatus
+
+  activateEditMode() {
+    this.newTitle = this.task.title
+    this.isEditMode = true
+  }
+
+  deactivateEditMode() {
+    this.updateTaskTitleEvent.emit({
+      todoId: this.task.todoListId,
+      taskId: this.task.id,
+      title: this.newTitle,
+    })
+
+    this.isEditMode = false
+  }
 
   removeTask() {
     this.removeTaskEvent.emit({

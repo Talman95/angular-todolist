@@ -42,4 +42,10 @@ export class TasksComponent implements OnInit {
       status: data.status,
     })
   }
+
+  updateTaskTitle(data: { todoId: string; taskId: string; title: string }) {
+    this.tasksService.updateTask(data.todoId, data.taskId, {
+      title: data.title,
+    })
+  }
 }

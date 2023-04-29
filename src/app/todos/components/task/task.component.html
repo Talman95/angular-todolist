@@ -1,9 +1,18 @@
 <article class="task">
   <input
-    type="checkbox"
-    (change)="updateTaskStatus($event)"
-    [checked]="task.status === taskStatus.Completed"
+    type="text"
+    *ngIf="isEditMode; else taskBlock"
+    [(ngModel)]="newTitle"
+    (blur)="deactivateEditMode()"
+    autofocus
   />
-  <b>{{ task.title }}</b>
-  <button (click)="removeTask()">X</button>
+  <ng-template #taskBlock>
+    <input
+      type="checkbox"
+      (change)="updateTaskStatus($event)"
+      [checked]="task.status === taskStatus.Completed"
+    />
+    <b (dblclick)="activateEditMode()">{{ task.title }}</b>
+    <button (click)="removeTask()">X</button>
+  </ng-template>
 </article>
