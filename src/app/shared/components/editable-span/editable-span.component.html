@@ -1,0 +1,13 @@
+<span>
+  <input
+    type="text"
+    *ngIf="isEditMode; else editBlock"
+    [(ngModel)]="updatedTitle"
+    (blur)="deactivateEditMode()"
+    (keyup.enter)="onEnterPress()"
+    autofocus
+  />
+  <ng-template #editBlock>
+    <b (dblclick)="activateEditMode()">{{ title }}</b>
+  </ng-template>
+</span>

@@ -27,23 +27,14 @@ export class TaskComponent {
     title: string
   }>()
 
-  isEditMode = false
-  newTitle = ''
   taskStatus: typeof TaskStatus = TaskStatus
 
-  activateEditMode() {
-    this.newTitle = this.task.title
-    this.isEditMode = true
-  }
-
-  deactivateEditMode() {
+  updateTitle(title: string) {
     this.updateTaskTitleEvent.emit({
       todoId: this.task.todoListId,
       taskId: this.task.id,
-      title: this.newTitle,
+      title,
     })
-
-    this.isEditMode = false
   }
 
   removeTask() {

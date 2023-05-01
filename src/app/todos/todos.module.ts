@@ -8,9 +8,16 @@ import { TodoComponent } from './components/todo/todo.component'
 import { FormsModule } from '@angular/forms'
 import { TasksComponent } from 'src/app/todos/components/tasks/tasks.component'
 import { TaskComponent } from './components/task/task.component'
+import { SharedModule } from 'src/app/shared/shared.module'
 
 @NgModule({
   declarations: [TodosComponent, TodoComponent, TasksComponent, TaskComponent],
-  imports: [CommonModule, HttpClientModule, TodosRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    TodosRoutingModule,
+    FormsModule,
+    SharedModule,
+  ],
 })
 export class TodosModule {}

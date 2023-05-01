@@ -1,11 +1,12 @@
 <article class="box">
   <div class="todo-header">
-    <h3 *ngIf="!isEditMode; else editBlock" (dblclick)="activateEditMode()">
-      {{ todo.title }}
+    <h3>
+      <todo-editable-span
+        [title]="todo.title"
+        (updateTitleEvent)="updateTitle($event)"
+      >
+      </todo-editable-span>
     </h3>
-    <ng-template #editBlock>
-      <input [(ngModel)]="title" (blur)="updateTodo()" autofocus />
-    </ng-template>
     <button (click)="removeTodo()">X</button>
   </div>
   <todo-tasks [todoId]="todo.id"></todo-tasks>
