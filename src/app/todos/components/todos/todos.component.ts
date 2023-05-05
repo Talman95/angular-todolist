@@ -11,8 +11,6 @@ import { Todo } from 'src/app/core'
 export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService) {}
 
-  title = ''
-
   todos$ = new Observable<Todo[]>()
 
   ngOnInit() {
@@ -21,11 +19,8 @@ export class TodosComponent implements OnInit {
     this.todosService.getTodos()
   }
 
-  addTodo() {
-    if (this.title.trim() !== '') {
-      this.todosService.addTodo(this.title)
-      this.title = ''
-    }
+  addTodo(title: string) {
+    this.todosService.addTodo(title)
   }
 
   removeTodo(id: string) {

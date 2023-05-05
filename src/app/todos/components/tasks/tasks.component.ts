@@ -13,7 +13,6 @@ export class TasksComponent implements OnInit {
   @Input() todoId!: string
 
   tasks$?: Observable<Task[]>
-  title = ''
 
   constructor(private tasksService: TasksService) {}
 
@@ -25,8 +24,8 @@ export class TasksComponent implements OnInit {
     this.tasksService.fetchTasks(this.todoId)
   }
 
-  addTask() {
-    this.tasksService.addTask(this.todoId, this.title)
+  addTask(title: string) {
+    this.tasksService.addTask(this.todoId, title)
   }
 
   removeTask(data: { todoId: string; taskId: string }) {

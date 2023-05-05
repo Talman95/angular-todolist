@@ -1,8 +1,5 @@
 <div class="box">
-  <div>
-    <input type="text" [(ngModel)]="title" />
-    <button (click)="addTask()">+</button>
-  </div>
+  <todo-add-item (addItemEvent)="addTask($event)"></todo-add-item>
 
   <todo-task
     *ngFor="let task of tasks$ | async"

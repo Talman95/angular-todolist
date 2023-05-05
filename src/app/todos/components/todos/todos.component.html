@@ -4,19 +4,15 @@
   </header>
 
   <div class="addForm">
-    <input
-      class="input"
-      type="text"
-      placeholder="Add new todo..."
-      [(ngModel)]="title"
-    />
-    <button (click)="addTodo()">+</button>
+    <todo-add-item (addItemEvent)="addTodo($event)"></todo-add-item>
   </div>
 
-  <todo-todo
-    *ngFor="let todo of todos$ | async"
-    [todo]="todo"
-    (removeEvent)="removeTodo($event)"
-    (updateEvent)="updateTodo($event)"
-  ></todo-todo>
+  <div class="container">
+    <todo-todo
+      *ngFor="let todo of todos$ | async"
+      [todo]="todo"
+      (removeEvent)="removeTodo($event)"
+      (updateEvent)="updateTodo($event)"
+    ></todo-todo>
+  </div>
 </div>
