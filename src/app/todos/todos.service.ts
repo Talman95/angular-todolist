@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { BehaviorSubject, map } from 'rxjs'
-import { CommonResponse, Todo } from 'src/app/core'
+import { CommonResponse, Todo, TodoEntity } from 'src/app/core'
+import { TodoFilter } from 'src/app/core/enums/todo-filter'
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,19 @@ import { CommonResponse, Todo } from 'src/app/core'
 export class TodosService {
   constructor(private http: HttpClient) {}
 
-  todos$ = new BehaviorSubject<Todo[]>([])
+  todos$ = new BehaviorSubject<TodoEntity[]>([])
 
   getTodos() {
     this.http
       .get<Todo[]>(`${environment.baseUrl}/todo-lists`)
+      .pipe(
+        map(todos => {
+          return todos.map(tl => ({
+            ...tl,
+            filter: TodoFilter.All,
+          }))
+        })
+      )
       .subscribe(todos => {
         this.todos$.next(todos)
       })
@@ -30,7 +39,11 @@ export class TodosService {
       )
       .pipe(
         map(res => {
-          return [res.data.item, ...this.todos$.getValue()]
+          const newTodo: TodoEntity = {
+            ...res.data.item,
+            filter: TodoFilter.Active,
+          }
+          return [newTodo, ...this.todos$.getValue()]
         })
       )
       .subscribe(todos => {
@@ -66,5 +79,13 @@ export class TodosService {
       .subscribe(todos => {
         this.todos$.next(todos)
       })
+  }
+
+  changeTodoFilter(todoId: string, filter: TodoFilter) {
+    this.todos$.next(
+      this.todos$
+        .getValue()
+        .map(todo => (todo.id === todoId ? { ...todo, filter } : todo))
+    )
   }
 }

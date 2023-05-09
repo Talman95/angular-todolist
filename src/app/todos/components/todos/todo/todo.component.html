@@ -10,4 +10,8 @@
     <button (click)="removeTodo()">X</button>
   </div>
   <todo-tasks [todoId]="todo.id"></todo-tasks>
+  <todo-todo-filter
+    [todoId]="todo.id"
+    [filter]="todo.filter"
+  ></todo-todo-filter>
 </article>

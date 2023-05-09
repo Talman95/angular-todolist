@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { TodosService } from 'src/app/todos/todos.service'
 import { Observable } from 'rxjs'
-import { Todo } from 'src/app/core'
+import { TodoEntity } from 'src/app/core'
 
 @Component({
   selector: 'todo-todos',
@@ -11,7 +11,7 @@ import { Todo } from 'src/app/core'
 export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService) {}
 
-  todos$ = new Observable<Todo[]>()
+  todos$ = new Observable<TodoEntity[]>()
 
   ngOnInit() {
     this.todos$ = this.todosService.todos$
