@@ -6,10 +6,11 @@ import { TodosComponent } from './components/todos/todos.component'
 import { HttpClientModule } from '@angular/common/http'
 import { TodoComponent } from './components/todos/todo/todo.component'
 import { FormsModule } from '@angular/forms'
-import { TasksComponent } from 'src/app/todos/components/todos/todo/tasks/tasks.component'
+import { TasksComponent } from './components/todos/todo/tasks/tasks.component'
 import { TaskComponent } from './components/todos/todo/tasks/task/task.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { TodoFilterComponent } from './components/todos/todo/todo-filter/todo-filter.component'
+import { TodoDateComponent } from './components/todos/todo/todo-date/todo-date.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TodoFilterComponent } from './components/todos/todo/todo-filter/todo-fi
     TasksComponent,
     TaskComponent,
     TodoFilterComponent,
+    TodoDateComponent,
   ],
   imports: [
     CommonModule,
