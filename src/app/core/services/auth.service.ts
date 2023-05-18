@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment'
 import { CommonResponse } from 'src/app/core'
 import { Me } from 'src/app/core'
 import { ResultCodeEnum } from 'src/app/core'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { ResultCodeEnum } from 'src/app/core'
 export class AuthService {
   isAuth = false
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   resolveAuthRequest: Function = () => {}
 
@@ -27,6 +28,16 @@ export class AuthService {
           this.isAuth = true
 
           this.resolveAuthRequest()
+        }
+      })
+  }
+
+  logout() {
+    this.http
+      .delete<CommonResponse>(`${environment.baseUrl}/auth/login`)
+      .subscribe(res => {
+        if (res.resultCode === ResultCodeEnum.success) {
+          this.router.navigate(['/login'])
         }
       })
   }
