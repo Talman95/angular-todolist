@@ -1,5 +1,12 @@
-.box {
+
+.addItemContainer {
+  height: 25px;
+  margin-bottom: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+}
+
+.tasksContainer {
+  overflow-y: auto;
+  max-height: calc(100vh - 425px);
 }

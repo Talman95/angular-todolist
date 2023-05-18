@@ -1,12 +1,10 @@
 <article class="box">
   <div class="todo-header">
-    <h3>
-      <todo-editable-span
-        [title]="todo.title"
-        (updateTitleEvent)="updateTitle($event)"
-      >
-      </todo-editable-span>
-    </h3>
+    <todo-editable-span
+      [title]="todo.title"
+      (updateTitleEvent)="updateTitle($event)"
+    >
+    </todo-editable-span>
     <button (click)="removeTodo()">X</button>
   </div>
   <todo-tasks [todoId]="todo.id"></todo-tasks>

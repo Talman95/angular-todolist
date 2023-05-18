@@ -1,15 +1,21 @@
-.box {
+.header {
   display: flex;
   justify-content: space-between;
-  height: 25px;
-  margin: 10px 0;
+  align-items: center;
+  margin-bottom: 30px;
+  background: rgba(128, 128, 128, 0.5);
+  height: 60px;
+  padding: 0 15px;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
+h6 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.button button {
+  background: #fff;
   border: 1px solid #06c;
   border-radius: 15px;
   color: #06c;
@@ -19,9 +25,4 @@
   line-height: 20px;
   outline: none;
   padding: 5px 15px;
-}
-
-.active {
-  background: #06c;
-  color: #fff;
 }

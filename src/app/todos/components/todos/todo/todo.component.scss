@@ -1,16 +1,33 @@
 .box {
-  border: 2px solid black;
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  min-width: 300px;
+  margin: 50px 50px 0 50px;
+  padding: 25px;
+  border-radius: 4px;
+  background: rgba(white, 0.5);
+
+  &:not(:first-child) {
+    margin-left: 0;
+  }
 }
 
 .todo-header {
+  height: 30px;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+
+  button {
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    font-weight: 900;
+    width: 40px;
+  }
 }

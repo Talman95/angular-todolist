@@ -11,6 +11,7 @@ import { TaskComponent } from './components/todos/todo/tasks/task/task.component
 import { SharedModule } from 'src/app/shared/shared.module'
 import { TodoFilterComponent } from './components/todos/todo/todo-filter/todo-filter.component'
 import { TodoDateComponent } from './components/todos/todo/todo-date/todo-date.component'
+import { CoreModule } from 'src/app/core/core.module'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TodoDateComponent } from './components/todos/todo/todo-date/todo-date.c
     TodosRoutingModule,
     FormsModule,
     SharedModule,
+    CoreModule,
   ],
 })
 export class TodosModule {}

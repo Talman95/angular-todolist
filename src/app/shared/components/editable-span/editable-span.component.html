@@ -1,4 +1,4 @@
-<span>
+<div class="box">
   <input
     type="text"
     *ngIf="isEditMode; else editBlock"
@@ -10,4 +10,4 @@
   <ng-template #editBlock>
     <b (dblclick)="activateEditMode()">{{ title }}</b>
   </ng-template>
-</span>
+</div>

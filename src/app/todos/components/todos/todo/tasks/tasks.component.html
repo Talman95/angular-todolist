@@ -1,11 +1,15 @@
 <div class="box">
-  <todo-add-item (addItemEvent)="addTask($event)"></todo-add-item>
+  <div class="addItemContainer">
+    <todo-add-item (addItemEvent)="addTask($event)"></todo-add-item>
+  </div>
 
-  <todo-task
-    *ngFor="let task of tasks$ | async"
-    [task]="task"
-    (removeTaskEvent)="removeTask($event)"
-    (updateTaskStatusEvent)="updateTaskStatus($event)"
-    (updateTaskTitleEvent)="updateTaskTitle($event)"
-  ></todo-task>
+  <div class="tasksContainer">
+    <todo-task
+      *ngFor="let task of tasks$ | async"
+      [task]="task"
+      (removeTaskEvent)="removeTask($event)"
+      (updateTaskStatusEvent)="updateTaskStatus($event)"
+      (updateTaskTitleEvent)="updateTaskTitle($event)"
+    ></todo-task>
+  </div>
 </div>

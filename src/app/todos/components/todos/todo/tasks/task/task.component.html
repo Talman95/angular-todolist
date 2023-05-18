@@ -1,12 +1,14 @@
 <article class="task">
-  <input
-    type="checkbox"
-    (change)="updateTaskStatus($event)"
-    [checked]="task.status === taskStatus.Completed"
-  />
-  <todo-editable-span
-    [title]="task.title"
-    (updateTitleEvent)="updateTitle($event)"
-  ></todo-editable-span>
+  <div class="editableContainer">
+    <input
+      type="checkbox"
+      (change)="updateTaskStatus($event)"
+      [checked]="task.status === taskStatus.Completed"
+    />
+    <todo-editable-span
+      [title]="task.title"
+      (updateTitleEvent)="updateTitle($event)"
+    ></todo-editable-span>
+  </div>
   <button (click)="removeTask()">X</button>
 </article>

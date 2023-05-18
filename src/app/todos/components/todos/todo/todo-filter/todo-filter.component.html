@@ -1,20 +1,20 @@
 <div class="box">
   <button
+    (click)="onTodoFilterClick(todoFilter.All)"
+    [ngClass]="{ button: true, active: filter === todoFilter.All }"
+  >
+    All
+  </button>
+  <button
     (click)="onTodoFilterClick(todoFilter.Active)"
-    [ngClass]="{ active: filter === todoFilter.Active }"
+    [ngClass]="{ button: true, active: filter === todoFilter.Active }"
   >
     Active
   </button>
   <button
     (click)="onTodoFilterClick(todoFilter.Completed)"
-    [ngClass]="{ active: filter === todoFilter.Completed }"
+    [ngClass]="{ button: true, active: filter === todoFilter.Completed }"
   >
     Completed
-  </button>
-  <button
-    (click)="onTodoFilterClick(todoFilter.All)"
-    [ngClass]="{ active: filter === todoFilter.All }"
-  >
-    All
   </button>
 </div>

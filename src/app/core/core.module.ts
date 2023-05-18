@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { CredentialsInterceptor } from 'src/app/core'
+import { HeaderComponent } from './layout/header/header.component'
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent],
   imports: [CommonModule, HttpClientModule],
   providers: [
     {
@@ -13,5 +14,6 @@ import { CredentialsInterceptor } from 'src/app/core'
       multi: true,
     },
   ],
+  exports: [HeaderComponent],
 })
 export class CoreModule {}
