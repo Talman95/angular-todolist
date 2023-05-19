@@ -6,9 +6,14 @@ import { Me } from 'src/app/core'
 import { ResultCodeEnum } from 'src/app/core'
 import { Router } from '@angular/router'
 
-@Injectable({
-  providedIn: 'root',
-})
+export interface LoginData {
+  email: string | null
+  password: string
+  rememberMe: boolean
+  captcha?: boolean
+}
+
+@Injectable()
 export class AuthService {
   isAuth = false
 
@@ -26,9 +31,8 @@ export class AuthService {
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
           this.isAuth = true
-
-          this.resolveAuthRequest()
         }
+        this.resolveAuthRequest()
       })
   }
 
@@ -38,6 +42,19 @@ export class AuthService {
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
           this.router.navigate(['/login'])
+        }
+      })
+  }
+
+  login(data: Partial<LoginData>) {
+    this.http
+      .post<CommonResponse<{ userId: number }>>(
+        `${environment.baseUrl}/auth/login`,
+        data
+      )
+      .subscribe(res => {
+        if (res.resultCode === ResultCodeEnum.success) {
+          this.router.navigate(['/'])
         }
       })
   }
