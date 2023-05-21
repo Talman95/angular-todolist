@@ -16,6 +16,7 @@ export interface LoginData {
 @Injectable()
 export class AuthService {
   isAuth = false
+  isLoggedIn = false
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -30,8 +31,10 @@ export class AuthService {
       .get<CommonResponse<Me>>(`${environment.baseUrl}/auth/me`)
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
-          this.isAuth = true
+          this.isLoggedIn = true
         }
+
+        this.isAuth = true
         this.resolveAuthRequest()
       })
   }
@@ -41,6 +44,7 @@ export class AuthService {
       .delete<CommonResponse>(`${environment.baseUrl}/auth/login`)
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
+          this.isLoggedIn = false
           this.router.navigate(['/login'])
         }
       })
@@ -54,8 +58,17 @@ export class AuthService {
       )
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
+          this.isLoggedIn = true
           this.router.navigate(['/'])
         }
       })
+    // .subscribe({
+    //   next: () => {
+    //     if (res.resultCode === ResultCodeEnum.success) {
+    //       this.isLoggedIn = true
+    //       this.router.navigate(['/'])
+    //     }
+    //   }
+    // })
   }
 }
