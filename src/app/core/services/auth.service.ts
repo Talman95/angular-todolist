@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { CommonResponse } from 'src/app/core'
 import { Me } from 'src/app/core'
 import { ResultCodeEnum } from 'src/app/core'
 import { Router } from '@angular/router'
+import { NotifyService } from 'src/app/core/services/notify.service'
+import { catchError, EMPTY } from 'rxjs'
 
 export interface LoginData {
   email: string | null
@@ -18,7 +20,11 @@ export class AuthService {
   isAuth = false
   isLoggedIn = false
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private notify: NotifyService
+  ) {}
 
   resolveAuthRequest: Function = () => {}
 
@@ -42,10 +48,13 @@ export class AuthService {
   logout() {
     this.http
       .delete<CommonResponse>(`${environment.baseUrl}/auth/login`)
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
           this.isLoggedIn = false
           this.router.navigate(['/login'])
+        } else {
+          this.notify.showError(res.messages[0])
         }
       })
   }
@@ -56,19 +65,19 @@ export class AuthService {
         `${environment.baseUrl}/auth/login`,
         data
       )
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
           this.isLoggedIn = true
           this.router.navigate(['/'])
+        } else {
+          this.notify.showError(res.messages[0])
         }
       })
-    // .subscribe({
-    //   next: () => {
-    //     if (res.resultCode === ResultCodeEnum.success) {
-    //       this.isLoggedIn = true
-    //       this.router.navigate(['/'])
-    //     }
-    //   }
-    // })
+  }
+
+  private errorHandler(err: HttpErrorResponse) {
+    this.notify.showError(err.message)
+    return EMPTY
   }
 }

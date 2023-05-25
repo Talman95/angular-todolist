@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { CredentialsInterceptor } from 'src/app/core'
 import { HeaderComponent } from './layout/header/header.component'
 import { AuthService } from './services/auth.service'
+import { NotifyService } from 'src/app/core/services/notify.service'
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -15,6 +16,7 @@ import { AuthService } from './services/auth.service'
       multi: true,
     },
     AuthService,
+    NotifyService,
   ],
   exports: [HeaderComponent],
 })
